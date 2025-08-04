@@ -28,7 +28,7 @@ export default function Home() {
         <img
           src="/images/peta-mangrove.png"
           alt="Peta Mangrove"
-          className="w-[70vw] max-w-none ml-[5vw]"
+          className="w-[68vw] max-w-none ml-[5vw]"
         />
       </div>
     </div>
