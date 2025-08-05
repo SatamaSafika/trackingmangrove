@@ -1,26 +1,92 @@
-import { useState } from 'react';
-import MapPopup from '../components/MapPopup';
+// src/pages/MapPage.jsx
+import React, { useState } from 'react';
 
-export default function MapPage() {
-  const [popup, setPopup] = useState(null);
+const spots = [
+  {
+    id: 1,
+    name: 'Gerbang Masuk',
+    top: '48%',
+    left: '50%',
+    description: 'Ini adalah titik masuk menuju jalur tracking mangrove.',
+    images: ['/images/spot1.jpg'],
+  },
+  {
+    id: 2,
+    name: 'Spot Edukasi',
+    top: '65%',
+    left: '38%',
+    description: 'Area edukasi tentang mangrove dan satwa sekitar.',
+    images: ['/images/spot2.jpg'],
+  },
+  {
+    id: 3,
+    name: 'Spot Foto',
+    top: '72%',
+    left: '55%',
+    description: 'Tempat favorit untuk berfoto dengan latar bakau.',
+    images: ['/images/spot3.jpg'],
+  },
+  {
+    id: 4,
+    name: 'Menara Pandang',
+    top: '85%',
+    left: '43%',
+    description: 'Menara pengamatan untuk melihat kawasan mangrove dari atas.',
+    images: ['/images/spot4.jpg'],
+  },
+];
 
-  const locations = [
-    { id: 1, name: 'Titik 1 - Hutan Bakau', image: '/images/mangrove1.png', desc: 'Ini adalah kawasan utama mangrove.' },
-    { id: 2, name: 'Titik 2 - Jembatan Kayu', image: '/images/bridge.png', desc: 'Spot foto favorit pengunjung.' },
-  ];
+const MapPage = () => {
+  const [selectedSpot, setSelectedSpot] = useState(null);
 
   return (
-    <div className="relative w-full h-screen bg-blue-100">
-      <img src="/images/peta-desa.png" className="w-full h-full object-cover" alt="Peta" />
-      {locations.map((loc, i) => (
+    <div
+      className="relative w-full h-screen bg-cover bg-center"
+      style={{ backgroundImage: `url('/images/background.png')` }}
+    >
+      {/* Gambar Peta */}
+      <img
+        src="/images/peta-mangrove.png"
+        alt="Peta Tracking Mangrove"
+        className="absolute top-1/2 left-1/2 w-[90vw] max-w-[600px] -translate-x-1/2 -translate-y-1/2 z-10"
+      />
+
+      {/* Titik Lokasi */}
+      {spots.map((spot) => (
         <button
-          key={loc.id}
-          className="absolute bg-green-600 text-white rounded-full w-6 h-6"
-          style={{ top: `${20 + i * 20}%`, left: `${30 + i * 10}%` }}
-          onClick={() => setPopup(loc)}
+          key={spot.id}
+          className="absolute z-20 w-4 h-4 bg-green-600 rounded-full border-2 border-white hover:scale-125 transition"
+          style={{ top: spot.top, left: spot.left }}
+          onClick={() => setSelectedSpot(spot)}
+          title={spot.name}
         />
       ))}
-      {popup && <MapPopup data={popup} onClose={() => setPopup(null)} />}
+
+      {/* Popup Info */}
+      {selectedSpot && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white p-4 rounded-lg shadow-lg w-[90vw] max-w-md z-30">
+          <h2 className="text-lg font-bold mb-2">{selectedSpot.name}</h2>
+          <p className="text-sm mb-2">{selectedSpot.description}</p>
+          <div className="flex gap-2 overflow-x-auto">
+            {selectedSpot.images.map((img, idx) => (
+              <img
+                key={idx}
+                src={img}
+                alt={`Foto ${selectedSpot.name}`}
+                className="w-24 h-24 object-cover rounded"
+              />
+            ))}
+          </div>
+          <button
+            onClick={() => setSelectedSpot(null)}
+            className="mt-3 text-sm text-blue-500 hover:underline"
+          >
+            Tutup
+          </button>
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default MapPage;
