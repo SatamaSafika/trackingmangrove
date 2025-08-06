@@ -1,11 +1,12 @@
+// src/pages/intro.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const navigate = useNavigate();
 
-  return (<div className="w-screen h-screen bg-white flex flex-col md:flex-row overflow-hidden">
-    
+  return (
+    <div className="w-screen h-screen bg-white flex flex-col md:flex-row overflow-hidden">
       {/* Kiri - Teks */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start px-[8vw] md:px-[5vw] text-center md:text-left space-y-[2vh] pt-[10vh] md:pt-0">
         <h2 className="text-[#D4D4D4] text-[6vw] md:text-[3.95vw] font-medium">Ayo Jelajah</h2>
