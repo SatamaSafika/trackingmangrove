@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Tambahan styling (optional) */
 body {
-  @apply bg-green-50 text-green-900;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }

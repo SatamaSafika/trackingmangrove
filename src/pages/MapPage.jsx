@@ -41,14 +41,20 @@ const MapPage = () => {
 
   return (
     <div
-      className="relative w-full h-screen bg-cover bg-center"
-      style={{ backgroundImage: `url('/images/background.png')` }}
+      className="relative w-full min-h-screen bg-no-repeat bg-center"
+      style={{
+        backgroundImage: "url('/images/background.png')",
+        backgroundSize: '115%',
+        backgroundPosition: 'center',
+      }}
     >
+
+
       {/* Gambar Peta */}
       <img
-        src="/images/peta-mangrove.png"
+        src="/images/hanyapeta-mangrove.png"
         alt="Peta Tracking Mangrove"
-        className="absolute top-1/2 left-1/2 w-[90vw] max-w-[600px] -translate-x-1/2 -translate-y-1/2 z-10"
+        className="absolute top-[22%] left-[50%] w-[150vw] max-w-[1790px] -translate-x-1/2 -translate-y-1/2 z-10"
       />
 
       {/* Titik Lokasi */}
